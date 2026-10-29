@@ -107,3 +107,37 @@ Do not commit API credentials, `.env` files, virtual environments, generated cac
 ## AI Assistance
 
 Disclose any AI-assisted development in accordance with the assignment requirements, describing the assistance actually used.
+## Run with Docker
+
+**Requirements:** Docker Desktop with Docker Compose.
+
+From the project root, run:
+
+```powershell
+docker compose up --build -d
+```
+
+After both containers start, open:
+
+- **Frontend dashboard:** http://localhost:8090
+- **Backend API:** http://localhost:8000
+- **Backend health check:** http://localhost:8000/health
+
+The frontend and backend run as separate Docker services managed by Docker Compose. The backend uses a named Docker volume, `windsight_cache`, for its SQLite API cache.
+
+To stop the application:
+
+```powershell
+docker compose down
+```
+
+## Live Deployment
+
+WindSight is publicly deployed on Vercel.
+
+- **Live application:** https://windsight-qpte.vercel.app
+- **Backend API:** https://windsight-two.vercel.app
+- **Backend health check:** https://windsight-two.vercel.app/health
+- **GitHub repository:** https://github.com/hackthoon011-gif/windsight
+
+The frontend and backend are deployed as separate Vercel projects. The frontend communicates with the backend through the `VITE_API_BASE_URL` configuration, and the backend allows the frontend origin through `WINDSIGHT_CORS_ORIGINS`.

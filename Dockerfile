@@ -1,4 +1,5 @@
 ﻿FROM node:22-slim
+RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -15,3 +16,4 @@ RUN npm run build
 EXPOSE 8080
 
 CMD ["npx", "wrangler", "--cwd", "./", "dev", "--ip", "0.0.0.0", "--port", "8080"]
+
